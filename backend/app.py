@@ -4,7 +4,7 @@ from botocore.exceptions import NoCredentialsError
 
 # AWS S3 Config
 S3_BUCKET = "swarnasoucdn"
-S3_REGION = "Asia Pacific (Mumbai) ap-south-1"
+S3_REGION = "ap-south-1"
 
 app = Flask(__name__)
 
