@@ -18,7 +18,10 @@ def index():
         songs = [file["Key"] for file in response.get("Contents", []) if file["Key"].endswith(".mp3")]
         
         # Generate public URLs
-        song_urls = [f"https://{S3_BUCKET}.s3.{S3_REGION}.amazonaws.com/{song}" for song in songs]
+        song_urls = [s3_client.generate_presigned_url('get_object',
+                                              Params={'Bucket': S3_BUCKET, 'Key': song},
+                                              ExpiresIn=3600) for song in songs]
+
     except NoCredentialsError:
         song_urls = []
 
